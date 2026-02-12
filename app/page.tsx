@@ -31,7 +31,7 @@ export default function Home() {
           </Link>
           {" "}and work around the world, and build some{" "}
           <Link
-            href="/writing/elenas"
+            href="/generalistarticle"
             className="text-accent underline-offset-4 hover:underline transition-colors"
           >
             companies
