@@ -42,10 +42,10 @@ export default function Home() {
         <div className="space-y-3 pl-6">
           <p className="border-l-2 border-accent pl-4">
             Building makes you a better investor, and investing makes you a
-            better builder
+            better builder.
           </p>
           <p className="border-l-2 border-accent pl-4">
-            A global perspective improves local outcomes
+            A global perspective improves local outcomes.
           </p>
         </div>
         <p>
@@ -58,8 +58,8 @@ export default function Home() {
           >
             Ardent
           </a>{" "}
-          team) and trying to understand what{"'"}s changing, what{"'"}s durable,
-          and what{"'"}s worth building next.
+          team) and thinking about what to build when the ground is moving this
+          fast.
         </p>
         <p>
           This site serves as a repository for what I am working on and thinking

@@ -8,12 +8,7 @@ type Investment = {
   description: string;
   round: string;
   status: "active" | "exited";
-};
-
-type Advisory = {
-  company: string;
-  url: string;
-  description: string;
+  advisory?: boolean;
 };
 
 const earlyStage: Investment[] = [
@@ -44,6 +39,7 @@ const earlyStage: Investment[] = [
     description: "Neobank for teens in LATAM",
     round: "Pre-Seed",
     status: "exited",
+    advisory: true,
   },
   {
     company: "Hunty",
@@ -51,6 +47,7 @@ const earlyStage: Investment[] = [
     description: "LatAm job marketplace",
     round: "Pre-Seed",
     status: "active",
+    advisory: true,
   },
   {
     company: "Labric",
@@ -79,6 +76,7 @@ const earlyStage: Investment[] = [
     description: "Soil carbon measurement",
     round: "Pre-Seed",
     status: "active",
+    advisory: true,
   },
   {
     company: "Sonder Health",
@@ -108,10 +106,18 @@ const earlyStage: Investment[] = [
     round: "Pre-Seed",
     status: "active",
   },
+  {
+    company: "Xignus",
+    url: "https://xignus.ai",
+    description: "AI financial analyst",
+    round: "Pre-Seed",
+    status: "active",
+    advisory: true,
+  },
 ];
 
 const lateStage: Investment[] = [
-{
+  {
     company: "Anduril",
     url: "https://www.anduril.com",
     description: "Defense technology",
@@ -132,14 +138,14 @@ const lateStage: Investment[] = [
     round: "Pre-IPO",
     status: "exited",
   },
-{
+  {
     company: "Lyft",
     url: "https://www.lyft.com",
     description: "Rideshare platform",
     round: "Series F",
     status: "exited",
   },
-{
+  {
     company: "Palantir",
     url: "https://www.palantir.com",
     description: "Data analytics & AI platform",
@@ -169,28 +175,16 @@ const lateStage: Investment[] = [
   },
 ];
 
-const advisoryRoles: Advisory[] = [
-  {
-    company: "Hunty",
-    url: "https://hunty.com",
-    description: "LatAm job marketplace",
-  },
-  {
-    company: "Perennial",
-    url: "https://www.perennial.earth",
-    description: "Soil carbon measurement",
-  },
-  {
-    company: "Xignus",
-    url: "https://xignus.ai",
-    description: "AI financial analyst",
-  },
-];
+const allItems = [...earlyStage, ...lateStage].sort((a, b) =>
+  a.company.localeCompare(b.company)
+);
 
-const tabs = ["Early-Stage", "Late-Stage", "Advisory"] as const;
+const advisoryItems = allItems.filter((inv) => inv.advisory);
+
+const tabs = ["All", "Early-Stage", "Late-Stage", "Advisory"] as const;
 type Tab = (typeof tabs)[number];
 
-function InvestmentRow({ inv }: { inv: Investment }) {
+function Row({ inv }: { inv: Investment }) {
   return (
     <div className="flex items-baseline justify-between gap-4 py-4 border-b border-foreground/10">
       <div className="min-w-0">
@@ -212,6 +206,11 @@ function InvestmentRow({ inv }: { inv: Investment }) {
           >
             {inv.status}
           </span>
+          {inv.advisory && (
+            <span className="text-xs px-1.5 py-0.5 rounded shrink-0 bg-foreground/5 text-foreground/50">
+              advisor
+            </span>
+          )}
         </div>
         <p className="text-sm text-foreground/50 mt-0.5">{inv.description}</p>
       </div>
@@ -223,7 +222,16 @@ function InvestmentRow({ inv }: { inv: Investment }) {
 }
 
 export default function InvestmentTabs() {
-  const [active, setActive] = useState<Tab>("Early-Stage");
+  const [active, setActive] = useState<Tab>("All");
+
+  const items =
+    active === "All"
+      ? allItems
+      : active === "Early-Stage"
+        ? earlyStage
+        : active === "Late-Stage"
+          ? lateStage
+          : advisoryItems;
 
   return (
     <div>
@@ -243,44 +251,11 @@ export default function InvestmentTabs() {
         ))}
       </div>
 
-      {active === "Early-Stage" && (
-        <div className="border-t border-foreground/10">
-          {earlyStage.map((inv) => (
-            <InvestmentRow key={inv.company} inv={inv} />
-          ))}
-        </div>
-      )}
-
-      {active === "Late-Stage" && (
-        <div className="border-t border-foreground/10">
-          {lateStage.map((inv) => (
-            <InvestmentRow key={inv.company} inv={inv} />
-          ))}
-        </div>
-      )}
-
-      {active === "Advisory" && (
-        <div className="border-t border-foreground/10">
-          {advisoryRoles.map((a) => (
-            <div
-              key={a.company}
-              className="py-4 border-b border-foreground/10"
-            >
-              <a
-                href={a.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground underline-offset-4 hover:underline hover:text-accent transition-colors"
-              >
-                {a.company}
-              </a>
-              <p className="text-sm text-foreground/50 mt-0.5">
-                {a.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="border-t border-foreground/10">
+        {items.map((inv) => (
+          <Row key={inv.company} inv={inv} />
+        ))}
+      </div>
     </div>
   );
 }
