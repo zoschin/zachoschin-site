@@ -1,65 +1,96 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div>
+      <h1 className="font-mono text-xl md:text-2xl tracking-tight mb-12">
+        Zach Oschin
+      </h1>
+
+      <div className="space-y-6 text-sm leading-relaxed text-foreground/80">
+        <p>
+          I{"'"}ve been investing in and launching businesses since I was a kid.
+          What started with washing cars and buying my first shares of Apple
+          stock turned into a long-term obsession with building companies that
+          matter.
+        </p>
+        <p>
+          Over the years, I{"'"}ve been lucky to{" "}
+          <Link
+            href="/investing"
+            className="text-accent underline-offset-4 hover:underline transition-colors"
+          >
+            partner
+          </Link>
+          {" "}with founders I admire,{" "}
+          <Link
+            href="/travel"
+            className="text-accent underline-offset-4 hover:underline transition-colors"
+          >
+            travel
+          </Link>
+          {" "}and work around the world, and build some{" "}
+          <Link
+            href="/writing/elenas"
+            className="text-accent underline-offset-4 hover:underline transition-colors"
+          >
+            companies
+          </Link>
+          {" "}of my own along the way. A couple beliefs that guide how I
+          approach the work:
+        </p>
+        <div className="space-y-3 pl-6">
+          <p className="border-l-2 border-accent pl-4">
+            Building makes you a better investor, and investing makes you a
+            better builder
+          </p>
+          <p className="border-l-2 border-accent pl-4">
+            A global perspective improves local outcomes
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        <p>
+          Today I spend my time investing (personally and as part of the{" "}
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://ardent.vc"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-accent underline-offset-4 hover:underline transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            Ardent
+          </a>{" "}
+          team) and trying to understand what{"'"}s changing, what{"'"}s durable,
+          and what{"'"}s worth building next.
+        </p>
+        <p>
+          This site serves as a repository for what I am working on and thinking
+          about. If anything resonates, feel free to reach out.
+        </p>
+      </div>
+
+      <div className="mt-16 pt-8 border-t border-foreground/10 flex gap-6 text-sm">
+        <a
+          href="mailto:hi@zachoschin.com"
+          className="text-accent underline-offset-4 hover:underline transition-colors"
+        >
+          Email
+        </a>
+        <a
+          href="https://www.linkedin.com/in/zachoschin/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent underline-offset-4 hover:underline transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://x.com/zoschin"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent underline-offset-4 hover:underline transition-colors"
+        >
+          X
+        </a>
+      </div>
     </div>
   );
 }
