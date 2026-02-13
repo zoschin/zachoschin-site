@@ -12,3 +12,12 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
 }
+
+@keyframes dot {
+  0%, 20% { opacity: 0; }
+  40%, 100% { opacity: 1; }
+}
+
+.animate-dot1 { animation: dot 1.4s infinite; animation-delay: 0s; }
+.animate-dot2 { animation: dot 1.4s infinite; animation-delay: 0.2s; }
+.animate-dot3 { animation: dot 1.4s infinite; animation-delay: 0.4s; }
